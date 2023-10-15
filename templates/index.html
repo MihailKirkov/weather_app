@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class = "text-white">
+    <div class="text-center" style="height:50vH; width:100%;">
+        <h1 class="mt-5">Weather App</h1>
+        <form action="/" method="post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <label for="cityName">City Name:</label>
+                        <input type="text" id="cityName" name="cityName" placeholder="Vienna" class="form-control">
+                    </div>
+                    <div class="col-sm">
+                        <label for="stateName">State Name:</label>
+                        <input type="text" id="stateName" name="stateName" placeholder="Vienna" class="form-control">
+                    </div>
+                    <div class="col-sm">
+                        <label for="countryName">Country Name:</label>
+                        <input type="text" id="countryName" name="countryName" placeholder="Austria" class="form-control">
+                    </div>
+                </div>
+            </div> <br>
+            <button class="submit btn btn-light">Check Weather</button>
+            
+        </form>
+        {% if data %}
+            <div class="shadow p-1 mt-1 border data-container">
+                <h4>{{data.main}}: {{data.description}}</h4>
+                <img src="https://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="Icon">
+                {{data.temperature}}°C
+            </div>
+            {% if data.main == 'Clear'%}
+                <div class="sun">
+                </div>
+                <div class="blue">
+                </div>
+            {% endif %}
+
+            {% if data.main == 'Clouds' %}
+                <div class="container my-container">
+                    <div class="cloud"></div>
+                    <div class="cloud1"></div>
+                </div>
+            {% endif %}
+
+            {% if data.main == 'Rain' %}
+                <div class="container my-container">
+                    <div class="cloud">
+                        <div class="rain">
+                            <span style="--i:11"></span><span style="--i:12"></span><span style="--i:14"></span><span style="--i:13"></span><span style="--i:10"></span><span style="--i:15"></span><span style="--i:18"></span><span style="--i:16"></span><span style="--i:17"></span><span style="--i:15"></span><span style="--i:14"></span><span style="--i:12"></span><span style="--i:11"></span><span style="--i:14"></span><span style="--i:13"></span><span style="--i:12"></span><span style="--i:13"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="cloud1">
+                        <div class="rain">
+                            <span style="--i:11"></span><span style="--i:12"></span><span style="--i:14"></span><span style="--i:13"></span><span style="--i:10"></span><span style="--i:15"></span><span style="--i:18"></span><span style="--i:16"></span><span style="--i:17"></span><span style="--i:15"></span><span style="--i:14"></span><span style="--i:12"></span><span style="--i:11"></span><span style="--i:14"></span><span style="--i:13"></span><span style="--i:12"></span><span style="--i:13"></span>
+                        </div></div>
+                    </div>
+            {% endif %}
+
+            {% if data.main == 'Snow' %}
+                    <div class="snow"></div>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

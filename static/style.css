@@ -1,0 +1,231 @@
+body {
+    background-image: url('bg-image.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-attachment: fixed;
+    max-height: 100vH;
+}
+body::before{
+    content: "";
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,25,1));
+    z-index: 1; /* Ensure the gradient is on top of the background image */
+    opacity: 0.7; /* Adjust opacity to allow interaction with elements beneath */
+    pointer-events: none;
+}
+div {
+    z-index: 2;
+}
+
+.data-container {
+    max-width:20%;
+    background-color:#f2f2f280;
+    color:darkblue;
+    margin:0 auto;
+    align-items:center;
+}
+
+.sun {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    width: 200px;
+    height: 200px;
+    background-color: #ffde00;
+    border-radius: 50%;
+    box-shadow: 0 0 0 20px #FFDE0080, 0 0 0 40px #FFDE0040, 0 0 0 60px #FFDE0020, 0 0 0 80px #FFDE0010, 0 0 0 100px #FFDE0000, 0 0 40px 100px #FFDE0010;
+    animation: sunrise 2s infinite linear forwards, rays 2s 2s infinite linear;
+}
+@keyframes sunrise {
+    0% {
+        box-shadow: none;
+    }
+}
+
+@keyframes rays {
+    0% {
+        box-shadow:0 0 0 0px #FFDE0080, 0 0 0 20px #FFDE0080, 0 0 0 40px #FFDE0040, 0 0 0 60px #FFDE0020, 0 0 0 80px #FFDE0010, 0 0 40px 100px #FFDE0010;
+    }
+    100% {
+        box-shadow: 0 0 0 20px #FFDE0080, 0 0 0 40px #FFDE0040, 0 0 0 60px #FFDE0020, 0 0 0 80px #FFDE0010, 0 0 0 100px #FFDE0000, 0 0 40px 100px #FFDE0010;
+    }
+}
+.cloud {
+    position: absolute;
+    top:30%;
+    left:5%;
+    width: 20em;
+    height: 6em;
+    background: #f2f2f2;
+    border-radius: 6em;
+    animation: flyin .5s linear forwards;
+}
+.cloud1 {
+    position: absolute;
+    top:30%;
+    right:5%;
+    width: 20em;
+    height: 6em;
+    background: #f2f2f2;
+    border-radius: 6em;
+    animation: flyin1 .5s linear forwards;
+}
+.cloud::before{
+    content:'';
+    position:absolute;
+    top: -3em;
+    left: 2em;
+    width:7em;
+    height:7em;
+    background:#f2f2f2;
+    border-radius: 50%;
+    box-shadow: 5em 0 0 2em #f2f2f2;
+}
+.cloud1::before{
+    content:'';
+    position:absolute;
+    top: -3em;
+    left: 2em;
+    width:7em;
+    height:7em;
+    background:#f2f2f2;
+    border-radius: 50%;
+    box-shadow: 5em 0 0 2em #f2f2f2;
+}
+@keyframes flyin {
+    0% {
+        left: -20%;
+    }
+    70% {
+        left: 10%;
+    }
+    100% {
+        left: 5%;
+    }
+}
+
+@keyframes flyin1 {
+    0% {
+        right: -20%;
+    }
+    70% {
+        right: 10%;
+    }
+    100% {
+        right: 5%;
+    }
+}
+.rain {
+    position: absolute;
+    top: 90%;
+    display: flex;
+    z-index:1;
+    height:11em;
+    border-bottom: 2px solid #7d7dff;
+}
+.rain span {
+    position: relative;
+    width:1em;
+    height:1em;
+    background: #7d7dff;
+    margin:0 2px;
+    border-radius: 50%;
+    animation: animate_rain 5s linear infinite;
+    animation-duration: calc(15s / var(--i));
+    transform-origin: bottom;
+}
+@keyframes animate_rain{
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    70% {
+        transform: translateY(9.5em) scale(1);
+    }
+    100% {
+        transform: translateY(9.5em) scale(0);
+    }
+}
+.snow, .snow::after, .snow::before{
+    content: "";
+    position:absolute;
+    top:-650px;
+    left:0;
+    right:0;
+    bottom:0;
+    background-image:
+    radial-gradient(4px 4px at 100px 50px, #fff, transparent),
+    radial-gradient(6px 6px at 200px 150px, #fff, transparent),
+    radial-gradient(3px 3px at 300px 250px, #fff, transparent),
+    radial-gradient(4px 4px at 400px 350px, #fff, transparent),
+    radial-gradient(6px 6px at 500px 100px, #fff, transparent),
+    radial-gradient(3px 3px at 50px 200px, #fff, transparent),
+    radial-gradient(4px 4px at 150px 300px, #fff, transparent),
+    radial-gradient(6px 6px at 250px 400px, #fff, transparent),
+    radial-gradient(3px 3px at 350px 500px, #fff, transparent);
+    background-size: 650px 650px;
+    animation: animate_snow 3s linear;
+    animation-iteration-count: infinite;
+}
+.snow::after{
+    margin-left: -250px;
+    opacity: 0.5;
+    filter: blur(2px);
+    animation-direction: reverse;
+    animation-duration: 6s;
+}
+.snow::before{
+    margin-left: -350px;
+    opacity: 0.7;
+    filter: blur(1px);
+    animation-direction: reverse;
+    animation-duration: 3s;
+}
+@keyframes animate_snow{
+    from{
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(650px);
+    }
+}
+
+.my-container {
+    width:100%;
+    height:50vh;
+    position:relative;
+}
+
+@media(max-width:768px){
+    .data-container{
+        max-width: 30%;
+    }
+    .sun {
+        width:160px;
+        height:160px;
+    }
+}
+
+@media(max-width:425px){
+    .my-container {
+        height:35vh;
+    }
+    .data-container {
+        max-width: 40%;
+    }
+    .sun {
+        width:120px;
+        height:120px;
+    }
+}
+
+@media(max-width:320px) {
+    .data-container{
+        max-width: 50%;
+    }
+}
